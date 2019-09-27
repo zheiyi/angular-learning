@@ -1,0 +1,550 @@
+
+☆ 封面：
+这个视频主要跟大家介绍一下angular的基础概念，新手怎么学习angular，以及在如何在我们自己的工程中开发angular项目。
+
+
+☆ 什么是Angular：
+angular是由Google维护的一款开源javaScript框架，是三大前端框架之一。
+主要用来打造单页应用。
+
+AngularJS 最初由两个个人开发，后来被Google收购，成为了Google公司的项目。
+Angular 和 AngularJS 名字很相似，但其实是两种不一样的框架，
+AngularJS 专指 Angular 的所有 1.x 版本，Angular 这个名字专指现在和未来的 Angular 版本
+
+也就是说Anguar1.5 之前叫做 AngularJs，
+Angular2 以上称为Angular，
+
+Angular1.5 到 Angular2 是完全重写，不兼容，也是因为这个原因，AngularJS的弃用率比较高。
+
+angular 每 6 个月发布一个主版本，目前的稳定版本是8，到今年11月左右，9将会称为稳定版本。
+在我们的工程中，最高版本用的是8，最低大概是6，以后都会逐步升级为稳定版本
+
+
+
+
+
+☆ 为什么用 Angular：
+先来强行夸一波儿 Angular
+
+
+
+☆ 渐进式框架：
+相对于VUE自称的渐进式框架，大家都叫Angular是全家桶。
+那什么是渐进式框架呢？
+
+Vue的核心功能是一个视图模板引擎，
+在这个核心的基础上，外层有组件系统、客户端路由、大规模状态管理，来构建一个完整的框架。
+外层的这些功能相互独立，你可以在核心功能的基础上任意选用其他的部件，不一定要全部整合在一起。
+也就是说，它可以随着开发者的需求，逐步地增长，这个与 React 的理念也比较像。
+
+当时国内机票使用 React 重构的时候，先用纯React写了一遍，
+后来发现了Redux，觉得不错，引入Redux重构了一遍，
+后来觉得异步代码全部写在组件内不合适，引入了saga又重构了一遍。
+最近打造的为前端又引入了页面路由。
+现在 react hooks 出来后也很火，是不是要用 hooks 再重构一遍
+
+
+
+但是呢，随着业务复杂度的增加，各类“全家桶”都会出现，没有哪个框架是真正“轻量级”的了，到这个阶段各大框架需要解决的问题都是比较接近的了。
+渐进式很灵活，但是我们天生就是全部要用功能，所以渐进也就没有什么意义了。
+
+
+
+☆ Angular是一个框架
+
+
+首先，Angular 已经考虑到了方方面面，内置了我需要的几乎所有功能。
+
+我们React工程，除了React本身，还额外选用了 Redux + Saga + axios（艾克瑟斯） + React-router。
+比如说我们选的saga，总感觉写代码的时候要绕一圈，很难受
+
+而 Angular 框架呢， 将我们需要的所有功能做了不错的整合。如果使用 Vue，我可能还要面临更多选择。
+
+Angular 文档涵盖了开发中的方方面面。如果使用 Vue，可能每个功能要去看不同的文档。
+
+Angular 更强势更主观，它的文档对于如何完成某个功能给出了明确的建议。
+
+即使只用 Angular 自身提供的模块都能做很多事，让第三方依赖所带来的侵蚀也最小化。不过这点也是相对的。
+
+
+
+
+
+工程化：
+1. 在 Angular 中，通过模块用来支持分工协作，开发过程中不会出现意外耦合
+后面会讲模块的划分
+
+
+2. Angular 借助 TypeScript 来对类型提供支持
+
+动态类型一时爽，代码重构火葬场
+
+TypeScript从angular 2就作为缺省的编程语言了，现在其他两大框架像React和Vue都在试图使用TypeScript了, 在这方面不得不说Angular是当之无愧的先行者。
+优秀的设计理念会被广泛借鉴
+TypeScript由微软创建，在谷歌重新angular2的时候，想自己重新写一套拥有类型的脚本语言，鉴于成本较高，于是找到了微软的TypeScript，强强联合。TypeScript语言和Java和C#有很多相似之处。
+
+
+
+3. 代码风格问题，Angular 开发组想到了这一点，他们专门做了一个用于 Angular 风格检查的工具，并且集成进了 Angular CLI 中，也就是我们后面要讲到的codelyzer。
+它所依据的规范就是 Angular 开发组提供的官方风格指南，有了这份风格指南，Angular 程序员就可以写出风格大致相同的代码了。
+看到金肖的代码，不仔细看区分不出来是谁写。不会说看一眼就知道不是我的风格，因为这里没有风格，只有官方风格
+
+
+
+4. Angular 既老且新
+Angular 采用了大量有十几年二十几年历史的成熟技术，比如依赖注入、接口、注解等。
+这些全都是经历过时间考验的最佳实践。
+
+说它新，是因为 Angular 热情拥抱其它上下游技术。从最初选择与少年时期的 TypeScript 合作，到跟 RxJS 的深度整合，再到对 PWA 的第一时间支持，再到对 Web Components 等标准草案的支持，都体现着 Angular 的开放的心态。
+
+angular就像个知识宝库，永远有东西可以让你学习，这样才更有追求。
+
+
+VUE3.0版本将支持摇树优化，代码库改为了用 TypeScript 编写，引入观察者模式，
+是不是都是Angular玩过的东西呀
+Angular：我在三年后等你们。
+这个是玩笑，因为框架之间经常有相互的借鉴。没有谁优谁劣，适合的就是好的。
+
+
+用angular做工程化是最容易的，因为Google已经把他们认为最优的解决方案摆在那了，也有风格指南，模块也帮你细分好了。
+而用vue和react的话，你第一就要对诸多第三方库或解决方案做出选择。
+层级划分，模块管理，通用模块设计，webpack配置等等大部分要自己去弄，所以更考验你的一个工程设计能力。
+Angular 它给出了复杂应用会遇到的问题的解决方案，真正的一站式构建，省心
+
+
+
+
+☆ 适用于中后台
+相比面向消费者端的前端，中后台的前端更加稳定，通常只需要面向 PC 端即可，
+
+但是需要基于复杂的业务场景进行抽象，产出通用的技术方案和产品，所以也面临着不小的挑战。
+
+随着前台业务的复杂度提升，运营后台的复杂度也成倍提升。
+
+简单的前端交互已经难以满足运营/或者说业务人员的需求和效率。
+
+以前配置运营规则，只需要提交个表单即可，而现在则需要操作一个更复杂的表单，表单上面各种数据接口异步请求、联动变化。
+
+运营平台，也就是我们说的中后台的建设和效率，在某些情况下是关乎于公司业务发展的，可以预见的是这将成为前端需求的爆发点。
+
+毕竟一个公司赚钱是因为业务赚钱，而不会因为你用了 Vue 或者 Angular 这些技术框架而赚钱。
+
+哪个库或者框架适合你的业务形态，可以给你带来稳定的系统，让你有高效的开发效率，当然就选哪个了。
+
+在中后台系统中的前端， Angular 是比较有用武之地的
+
+
+
+
+
+☆ 官方提供的风格指南
+angular 像个老大妈一样不厌其烦的告诉你该怎么做，不像React，直到现在我们也无法确定自己写的是不是最佳实践。
+
+即使不开发angular，适用别的语言和框架，也可以来看看这个，规范是具有普适性的。
+
+敲黑板划重点，这边要考的。
+
+比如一个文件不要超过多少行呢？
+
+回头可以向达哥申请旅行币
+
+3-----------------------
+
+
+
+angular被吐槽的点大概就是这两点
+
+难：
+难是指Angular的学习曲线陡峭
+需要一定的基础知识。比如 TypeScript
+但是这些不算难的
+
+学习曲线是分段式上涨的
+
+这里截图了一个别人的吐槽
+就是说学完这个又发现那个还不会，如果有好奇心，那对你的技术精进是有帮助的，如果没有好奇心，那也不影响你的基本使用
+
+
+
+重：
+
+如果是用在中后台的PC端，重也不能算是障碍了
+
+
+
+
+现在我们来讲下如何在我们的工程中开发angular项目
+
+
+☆ 工欲善其事，必先利其器：
+
+每个人都有自己的代码书写风格，当团队协作的时候，如果每个人都坚持自己的风格书写，代码将是灾难性的。
+
+所以我们需要统一风格，不仅可以减少出 bug 的几率，而且能增加代码的可读性。
+
+自身的良好编码风格只能律己，而无法律人；
+
+Angular有一整套的工具及风格指南，它可以极大的简化团队开发沟通成本。
+
+但是有些小缺失，例如在编码风格上官方只提供 TypeScript 的部分，对于其他文件并没有一套指南以及智能化。
+
+所以需要我们在工程中自己配置下。
+
+我们会配置 tslint、stylelint等代码检查工具，分别对typescript和css进行代码检查
+
+我之前看到有同事没有装任何智能提示插件，就是盲写，那样太难了，我们不可能记住所以东西。
+
+
+VSCode 是开发 Angular 的首选IDE，提供了很多关于Angular的扩展，是编写 Angular 最佳的选择。
+
+
+
+☆ TSLINT：
+
+https://github.com/cipchk/ng-code-style-boilerplate
+
+lint 检查工具一般会有一些通用的配置，下载后就可以使用。
+比较有名的像 AirBnb 的 lint 检查规范。在 tslint 和 stylelint中也可以直接使用官方推荐的规范。
+
+Angular 创建后就已经包含 tslint.json，并且所有默认规则都按官方风格指南来具体践行的。
+
+TSLint 的配置文件，默认使用官方版本，
+
+并在此基础上加入 Angular 质量检查工具 codelyzer，codelyzer 是专门针对 Angular 的规则。
+
+
+所有这些规则 你可以通过 tslint rules、codelyzer 的这些链接找到每项规则的说明。
+
+
+示例Component.selector
+
+4---------------------
+
+
+
+
+TSLint 扩展支持在保存文件时自动修复，只需要在项目根目录 .vscode/settings.json 配置editor.codeActionsOnSave
+示例：保存
+
+
+
+
+☆ 美化
+.editorconfig 用来组织一些简单的统一规范配置
+
+Angular 项目本身有 .editorconfig 的配置，
+
+虽然有这个配置文件，但在 VSCode 也有自己的一套规范并且优先级更高，
+
+
+所以要想让 EditorConfig 生效需要额外安装 EditorConfig for VS Code 插件。
+
+Editorconfig 只包含一些最基础的项，要想让代码统一风格的美化还是需要更强大的 Prettier。
+
+prettier主要优点是对几乎所有前端的代码都可以优化，比如html、css、scss、jsx、ts等。
+
+lint 工具主要专注在代码质量的检查，所有的代码风格的校验可以都交给prettier，让它完成代码风格的格式化。
+
+
+
+
+☆ Prettier：
+
+在根目录下创建 .prettierrc 配置文件以及 .prettierignore 忽略美化配置文件；
+
+值得注意的是Editorconfig 选项与 Prettier 选项高度重叠，并且后者会强制替换前者
+
+同样如果你期望每次保存文件时自动美化代码，只需要在项目根目录 .vscode/settings.json 配置 “editor.formatOnSave”: true，这样就不用一直按alt+shift+F了
+
+Prettier 配置项会有部分与 tslint.json 项重复，
+例如：Prettier 的 printWidth 与 tsline.json 的 max-line-length，
+
+对于 Prettier 以她为优先，反之使用 ng lint 会以 tslint.json 优先。
+
+
+这对我们来说有些困惑，TSLint 包含了一些代码”美化性"（例如：max-line-length），
+
+事实上，这更应该是 Prettier 的专长（所有配置都跟代码美化相关）。
+
+
+有个解决方案，就是使用tslint-config-prettier ，帮助清理这些可能会产生的冲突，
+
+这个要安装下
+
+
+注意要把tslint-config-prettier放在后面
+
+
+
+
+
+因为prettier内置了一套代码风格，而且只暴露很少的可配置项，所以为了防止 lint 工具和prettier冲突，还需要安装相应的 library
+npm prettier-stylelint tslint-config-prettier --save-dev
+
+
+--------------5
+
+
+
+
+
+☆ stylelint
+
+stylelint 有自己的一套规则，而 stylelint-config-standard 只是官方提供一种默认规则。
+
+"lint:style": "stylelint 'src/**/*.less' --syntax less“
+
+Prettier 也支持 Less，需要额外安装依赖包 prettier-stylelint ，并修改 .stylelintrc 配置
+
+其他插件：
+stylelint-order
+Css 语言同一类型的相关属性可能会很多，而将这些相关属性进行分组对于维护非常有帮助
+
+
+
+
+
+☆ scripts
+到这里，涉及 Angular 所需要的代码风格运用就已经完成了，
+这些检查我们都大多数是依靠 VSCode 编辑器的扩展辅助完成。
+
+我们还需要增加几个命令来对整个项目进行检查，确保整个项目的代码能按所配置的风格执行。
+
+也就是通过scripts 帮我们快速格式化代码
+
+但是，这时候有个问题，如果你忘了运行这个命令，你还是可以提交，流程之中就存在漏洞。
+
+如果可以将这一过程在向源码仓库提交代码时进行检查的话，可以在向代码仓储提交前就发现问题，
+
+此时就可以请出husky和lint-staged，并且修改 package.json，
+利用 git 的 hook 来帮我们在 commit 前自动进行代码检查。
+
+当向源码仓库 Commit 时会自动先执行命令行才会 git add
+
+husky会在.git/hooks中写入pre-commit的钩子，
+这个钩子会在git commit执行的时候触发，
+而 lint-staged会对此时在暂存区的文件进行 lint 和 prettier 检查，
+并且会自动修复一些能修复的问题，并重新添加到暂存区。
+这时候如果检查通过，会把暂存区中的文件提交；检查不过关，则会终止 commit 操作。
+
+husky 能够帮你防止不规范代码被提交和推送
+
+
+
+
+
+☆ commit 规范
+
+既然我们都装了husky了，不妨再进一步，规范一下 commit message
+
+https://zhuanlan.zhihu.com/p/71143472
+
+git 可以帮我们很好地管理代码，但是在多人合作的时候，经常会碰到各种随意的 commit message，
+
+
+commitizen/cz-cli, 我们需要借助它提供的 git cz 命令替代我们的 git commit 命令, 帮助我们生成符合规范的 commit message.
+除此之外, 我们还需要为 commitizen 指定一个 Adapter 比如: cz-conventional-changelog (一个符合 Angular团队规范的 preset，被广泛使用). 
+使得 commitizen 按照我们指定的规范帮助我们生成 commit message.
+示例
+
+
+一个 commit message 由三部分构成：
+标题行: 必填, 描述主要修改类型和内容
+主题内容: 描述为什么修改, 做了什么样的修改, 以及开发的思路等等
+页脚注释: 放 Breaking Changes 或 Closed Issues
+
+
+☆ Commitlint
+如果我不想用git cz呢，又想保证commit message规范呢？
+
+这时候我们需要 lint 工具，来帮我们约束 commit message 的书写。
+也就是 commitlint，如果我们提交的不符合指向的规范, 直接拒绝提交, 比较狠.
+
+同样的, 它也需要一份校验的配置, 这里推荐 @commitlint/config-conventional (符合 Angular团队规范).
+
+添加 .commitlintrc.js 文件
+
+
+然后同样需要借助 husky 和 lint-staged
+
+
+这时候你就可以用git cz 代替git commit，当然如果习惯了 commit message 规范后，可以直接用git commit，如果 message 不符合规范，是不会 commit 的。
+
+https://segmentfault.com/a/1190000019546365
+https://segmentfault.com/a/1190000015953265
+
+
+
+√ 代码规范和 commit 规范是前端工程化中的重要一环，工程化可以保证在多人协作的情况下，项目质量的下限。
+
+
+
+
+
+
+☆ 新手如何学习
+
+现在万事俱备了，只欠学习了
+
+
+
+
+
+☆ Angular 项目结构
+
+
+先看下angular关于目录结构的指导原则
+https://angular.cn/guide/styleguide#overall-structural-guidelines
+官方的这个例子适用于小型的应用
+
+
+
+我们看下ng-alain脚手架生成的目录结构
+
+ng-alain目录结构
+https://zhuanlan.zhihu.com/p/63515048
+https://github.com/ng-alain/ng-alain/issues/180
+
+
+
+
+
+NG-ALAIN 脚手架是基于 Angular 和 NG-ZORRO（Ant Design 的 Angular 版本） 基础组件库的中后台前端解决方案
+脚手架包含着一套通用的功能和业务组件库，它们可以极大地减少一些基础建设开发工作。
+
+
+
+app 文件夹下面被分成了core、layout、routes、shared几个目录。
+
+
+先看layout 和 routes 这两个目录，它们用于整体视图层的组织，为什么要分成两个模块去组织的视图层呢，其实是为了更好地去布局。
+
+
+core 指核心模块
+其中只应该包含服务
+核心模块，只会在在 AppModule 中导入一次。
+因此，针对整个业务模块都需要使用的纯服务类（例如：消息、数据访问等），都应该存在这里。
+把要共享给整个应用的单例服务放进 CoreModule 中（例如 ExceptionService 和 LoggerService
+在 ng-alain 的模块注册指导原则中把CoreModule 认为应该是纯服务类模块，通常会放HTTP 拦截器、路由守卫等一些全局性的服务。
+但是在angular8中，官方已经不推荐建立这个模块了
+
+
+
+
+layout 通用布局
+布局文件代码
+我们没有把导航栏和页脚在 app.component.ts 中，而是把布局层的代码剥离出来，这样可以更方便地组织布局
+LayoutModule应该 导入 SharedModule；
+LayoutModule应该 导出所有 layout component；
+LayoutModule不应该 导入和声明任何路由；
+
+
+
+
+在子路由中，我们可以通过loadChildren来进行懒加载，这样保证当前页面 buddle 的大小最小，提高页面加载速度。
+
+routes 业务目录，特性模块
+有的项目把这一层命名为components，感觉routes更合适些，毕竟里面都是路由模块
+业务模块，你的所有业务代码都将在这里
+
+那么我们要做1层懒加载还是2层呢，在我看来区别不大，嫌麻烦的可以做1层，结构更清晰
+
+
+
+共享特性模块 SharedModule
+共享模块，指当你需要针对整个业务模块都需要使用的一些第三方模块、自定义组件、自定义指令，都应该存在这里。
+非业务相关的通用组件、指令、管道以及其他模块所需要的资产
+和CoreModule相比，SharedModule正好相反，它不应该包含服务，因为SharedModule会在不同业务模块中导入，一旦包含了服务，就会产生不同的实例，有可能会对应用产生负面的影响，所以尽量保证服务的单一性。
+
+SharedModule应该导出所有包含模块；
+SharedModule不应该 有providers属性；
+
+可能在整个应用中到处引用
+不要在共享模块中提供服务
+在 SharedModule 中导入所有模块都需要的资产（例如 CommonModule 和 FormsModule）
+
+在 SharedModule 中声明所有组件、指令和管道
+从 SharedModule 中导出其它特性模块所需的全部符号
+
+如果共享的组件管道比较多，考虑建立components和pipes目录
+
+
+
+
+
+src/app/delon.module.ts
+针对 @delon 系列的模块导入集合，默认情况下导入所有模块，你可以利用优化章节，进一步按需优化。
+
+
+
+外层 
+assets 本地静态资源
+environments 环境变量配置
+styles 样式目录
+全局性的变量、通用的 css 样式
+
+
+
+style.less  样式引导入口
+
+
+Polyfills
+core-js 支持差异加载后 Angular 自动管理 Polyfills
+这边好像有个坑，使用默认的配置在兼容模式下IE Edge中会报错，还是得手动加上
+
+
+
+页面结构
+
+
+AppModule应该 导入 SharedModule、CoreModule、LayoutModule、RouterModule和Angular 模块(例如：BrowserModule、BrowserAnimationsModule、HttpClientModule)；
+
+
+
+
+☆ angular主要概念
+
+angular有一些核心概念和特有概念
+
+模块
+把一组紧密相关的功能关联起来，形成功能单元
+
+组件
+
+指令
+
+模板
+模板会把 HTML 和 Angular 的标记（markup）组合起来
+
+数据绑定
+在视图显示出来之前，Angular 会先根据你的应用数据和逻辑来运行模板中的指令并解析绑定表达式，以修改 HTML 元素和 DOM。 Angular 支持双向数据绑定，这意味着 DOM 中发生的变化（比如用户的选择）同样可以反映回你的程序数据中。
+这里解释一下单向数据流
+
+
+服务与依赖注入
+对于与特定视图无关并希望跨组件共享的数据或逻辑，可以创建服务类
+
+
+
+
+
+
+☆ 后期还会有一些实战视频，比如组件的通讯，表单的设计等。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
